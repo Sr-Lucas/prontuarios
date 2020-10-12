@@ -1,0 +1,71 @@
+version: "3.3"
+services:
+  app:
+    build:
+      args:
+        user: sammy
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: travellist
+    container_name: app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./backend:/var/www
+    networks:
+      - my_network
+
+  db:
+    image: mysql:5.7
+    container_name: db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_ROOT_PASSWORD: docker
+      # MYSQL_PASSWORD: ${DB_PASSWORD}
+      # MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./backend/docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - my_network
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./backend:/var/www
+      - ./backend/docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - my_network
+
+  nodejs-server:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "3080:3080"
+    container_name: node-api
+    volumes:
+       - ./api:/usr/src/app/api
+       - /usr/src/app/api/node_modules
+
+  vue-ui:
+    build:
+      context: ./my-app
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    container_name: vue-ui
+    volumes:
+       - ./my-app:/usr/src/app/my-app
+       - /usr/src/app/my-app/node_modules
+
+networks:
+  my_network:
+    driver: bridge
