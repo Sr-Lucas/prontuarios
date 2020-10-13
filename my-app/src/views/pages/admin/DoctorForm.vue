@@ -153,14 +153,18 @@ export default {
         expertise_id: this.expertise_id,
       };
 
-      if (!this.doctorId) {
-        response = await api.post('doctors', doctor);
-      } else {
-        response = await api.put(`doctors/${this.doctorId}`, doctor);
-      }
+      try {
+        if (!this.doctorId) {
+          response = await api.post('doctors', doctor);
+        } else {
+          response = await api.put(`doctors/${this.doctorId}`, doctor);
+        }
 
-      if (response.status === 200) {
-        this.$router.go(-1);
+        if (response.status === 200) {
+          this.$router.go(-1);
+        }
+      } catch(ex) {
+        alert('Erro ao criar doutro. Verifique o campo de CPF. (ele pode já existir no banco)');
       }
     },
   },
