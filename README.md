@@ -83,6 +83,10 @@ com os seguintes dados para autenticação:
 
 <br/>
 
+O fron-end estará rodando em http://localhost:8080
+
+<br/>
+
 # Rotas para teste (opcional)
 
 <br/>
