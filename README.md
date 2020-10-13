@@ -78,7 +78,7 @@ com os seguintes dados para autenticação:
 
 <br/>
 
-> CPF: 28733649049\
+> CPF: 10908418094\
 > SENHA: 123456
 
 <br/>
