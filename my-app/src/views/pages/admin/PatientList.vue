@@ -40,7 +40,7 @@
             sortable: false,
             value: 'name',
           },
-          { text: 'CPF', value: 'cpf' },
+          { text: 'CPF', value: 'user.cpf' },
           { text: 'DATA DO CADASTRO', value: 'createdDate' },
         ],
         patients: [
