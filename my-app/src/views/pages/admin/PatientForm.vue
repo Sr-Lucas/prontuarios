@@ -278,10 +278,14 @@
           phone: this.phone,
         };
 
-        if(!this.patientId) {
-          responsePatient = await api.post('/patients', patient);
-        } else {
-          responsePatient = await api.put(`/patients/${this.patientId}`, patient);
+        try {
+          if(!this.patientId) {
+            responsePatient = await api.post('/patients', patient);
+          } else {
+            responsePatient = await api.put(`/patients/${this.patientId}`, patient);
+          }
+        } catch(ex) {
+          alert('Erro ao criar doutro. Verifique o campo de CPF. (ele pode já existir no banco)');
         }
         
         if(responsePatient.status === 200) {
