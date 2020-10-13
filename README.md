@@ -6,7 +6,7 @@
 
 <br />
 
-## Configurando Arquivo .env (pular este passo caso ela já exista)
+## Configurando Arquivo .env
 
 <br />
 
@@ -38,7 +38,7 @@ Após isso seu arquivo .env estará configurado.
 <br />
 
 Dentro do <strong>diretório raiz</strong> do projeto execulte o comando abaixo para
-criar os containers docker o qual o sistema irá rodar sobre.
+criar os containers docker os quais o sistema irá rodar sobre.
 
 <br />
 
@@ -57,7 +57,7 @@ backend.
 <br/>
 
 Para criar o chave para validação de JWT utilize o comando descrito abaixo\
-(PS: caso solicite permição para rodas este comando aceite-a digitando <strong>yes</strong>)
+(PS: caso solicite permição para rodar este comando aceite-a digitando <strong>yes</strong>)
 
 <br/>
 
